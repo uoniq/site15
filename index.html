@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			background-image: url(bg.jpg);
+		}
+	</style>
+</head>
+<body>
+	<p>score <span class="score"></span></p>
+	<p>bugs <span class="bugs"></span></p>
+	<script>
+		let score = document.querySelector(".score")
+		let bugs = document.querySelector(".bugs")
+		points = 0
+		bugsc = 0
+		let x = function(){
+			let img = document.createElement("img")
+			document.body.appendChild(img)
+			img.style.height = "100px"
+			img.style.width = "100px"
+			img.src = "img.svg"
+			img.style.position = "absolute"
+			let randx = Math.random()*1280
+			let roundx = Math.round(randx)
+			let randy = Math.random()*670
+			let roundy = Math.round(randy)
+			img.style.marginLeft = roundx + "px"
+			img.style.marginTop = roundy + "px"
+			img.onclick = function(){
+				img.style.display = "none"
+				points = points + 1
+				score.innerHTML = points
+				bugsc = bugsc - 1
+				bugs.innerHTML = bugsc
+			}
+			bugsc = bugsc + 1
+			bugs.innerHTML = bugsc
+		}
+		setInterval(x,300)
+		let losewin = function(){
+			if(points >= 20){
+				alert("u win")
+			}
+			else{
+				alert("u lose")
+			}
+			clearInterval(x)
+		}
+		setTimeout(losewin,10000)
+	</script>
+</body>
+</html>
